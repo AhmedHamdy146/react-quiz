@@ -108,7 +108,6 @@ function QuizProvider({ children }) {
   ] = useReducer(reducer, initialState);
   const numQuestions = questions.length;
   const totalPoints = questions.reduce((acc, cur) => acc + cur.points, 0);
-  console.log(totalPoints);
 
   useEffect(() => {
     async function fetchData() {
