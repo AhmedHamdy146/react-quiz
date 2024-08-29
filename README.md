@@ -1,43 +1,34 @@
+# Quiz App
+
+This is a simple Quiz App built with React that allows users to select the difficulty level (Easy, Medium, Hard) and then begin the quiz. The app leverages several React hooks and the Context API for state management and side effects. The quiz questions are served using json-server for a quick and easy local REST API.
+
+## Features
+
+- **Welcome Screen:** Users are greeted with a welcome screen and an option to choose the difficulty level for the quiz.
+- **Quiz Functionality:** The app fetches quiz questions based on the selected difficulty and presents them one at a time.
+- **State Management:** Uses Context API and `useReducer` for managing global state across components.
+- **Dynamic Data Fetching:** Fetches quiz questions dynamically using the `useEffect` hook based on the chosen difficulty level.
+- **Interactive UI:** Users can interact with the quiz by selecting answers and moving through the questions.
+- **JSON Server:** Utilizes `json-server` to serve quiz data locally, making development and testing easier.
+
+## Technologies Used
+
+- **React:** A JavaScript library for building user interfaces.
+- **Context API:** To manage global state across different components.
+- **useReducer:** For handling complex state logic in a more structured way, especially for managing the quiz state (current question, score, etc.).
+- **useEffect:** For handling side effects, such as fetching quiz questions from an API when the difficulty level is selected.
+- **json-server:** A simple and quick tool to create a REST API using a JSON file.
+
+
+# Start json-server to serve the quiz data:
+
+```bash
+npx json-server --watch db.json --port 4000
+```
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Learn More
 
@@ -45,26 +36,52 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Application Flow
 
-### Analyzing the Bundle Size
+1. **Welcome Screen:**
+   - The app begins with a welcome screen where the user can select the quiz difficulty: Easy, Medium, or Hard.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. **Difficulty Selection:**
+   - The user selects the desired difficulty level. Upon selection, the app fetches quiz questions based on the difficulty using `useEffect`.
 
-### Making a Progressive Web App
+3. **Quiz Screen:**
+   - The quiz begins, and questions are presented one at a time.
+   - Users can select an answer and proceed to the next question.
+   - The current quiz state (current question, score, etc.) is managed using `useReducer`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. **Result Screen:**
+   - After the quiz is completed, the user's score is displayed, and they have the option to retake the quiz or change the difficulty.
 
-### Advanced Configuration
+## State Management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Context API
 
-### Deployment
+The Context API is used to provide global state throughout the app. This allows different components to access and update the quiz state without prop drilling.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### useReducer
 
-### `npm run build` fails to minify
+`useReducer` is used to manage the quiz state, including the current question index, score, and selected difficulty level. This hook is ideal for managing the complex state logic in the quiz application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### useEffect
+
+`useEffect` is used to fetch quiz questions from an API based on the selected difficulty level. It also handles any side effects, such as updating the component when the data is loaded.
+
+## Folder Structure
+
+```bash
+quiz-app/
+├── public/
+├── data/
+│   ├── questions.json  
+├── src/
+│   ├── components/        # Reusable components (e.g., Question, Answer, Result)
+│   ├── context/           # Context API-related files
+│   ├── App.js            # Main App component
+│   ├── index.js          # Entry point of the application
+│   └── index.css/            # CSS or Tailwind styles
+├── .gitignore
+├── package.json
+└── README.md
+```
+# Demo 
